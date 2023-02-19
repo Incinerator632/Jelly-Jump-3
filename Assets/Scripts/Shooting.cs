@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-
     public GameObject bulletPrefab; // The projectile to be fired
     public Transform firePoint; // The point from which the projectile will be fired
     public float bulletForce = 20f; // The speed of the projectile
