@@ -4,49 +4,37 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
-    public float speed; // speed of obstacle movement
-    public LayerMask behindPlatformLayer; // layer mask for the layer to use when behind platform
+    public LayerMask platformLayer; // layer mask for the platform layer
 
-    private Rigidbody2D rb;
-    private bool movingThroughPlatform;
-    private int previousLayer;
+    private Collider2D obstacleCollider;
+    private bool isColliding;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        previousLayer = gameObject.layer;
+        obstacleCollider = GetComponent<Collider2D>();
     }
 
-    private void FixedUpdate()
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!movingThroughPlatform)
+        if (collision.gameObject.CompareTag("Platform"))
         {
-            // move obstacle forward
-            rb.MovePosition(transform.position + transform.right * speed * Time.deltaTime);
+            if (collision.gameObject.layer == platformLayer)
+            {
+                obstacleCollider.isTrigger = true;
+                isColliding = true;
+            }
         }
-    }
+    }*/
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Platform"))
-        {
-            // set obstacle layer to be behind platform layer
-            gameObject.layer = behindPlatformLayer;
-
-            // set flag to move obstacle behind platform
-            movingThroughPlatform = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
+    /*private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Platform"))
         {
-            // set obstacle layer back to previous layer
-            gameObject.layer = previousLayer;
-
-            // set flag to resume normal movement
-            movingThroughPlatform = false;
+            if (other.gameObject.layer == platformLayer)
+            {
+                obstacleCollider.isTrigger = false;
+                isColliding = false;
+            }
         }
-    }
+    }*/
 }

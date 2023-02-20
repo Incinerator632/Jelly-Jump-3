@@ -9,9 +9,15 @@ using UnityEngine;
         public float jumpForce = 10f;
         public int hitAmount_Max = 2;
         private int hitAmount_Current;
+        public LayerMask projectileLayer;
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.gameObject.GetComponent<BoxCollider2D>());
+        }
             if (collision.relativeVelocity.y <= 0f)
             {
                 Rigidbody2D player2Rb2d = collision.gameObject.GetComponent<Rigidbody2D>();

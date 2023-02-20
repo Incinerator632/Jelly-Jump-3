@@ -31,13 +31,12 @@ public class SwipeController : MonoBehaviour
                     float deltaX = touch.position.x - touchStart.x;
                     if (isDragging)
                     {
-                        horizontalMove += deltaX;
-                        if (Mathf.Abs(horizontalMove) >= moveThreshold)
+                        float moveDir = Mathf.Sign(deltaX);
+                        if (Mathf.Abs(horizontalMove) < moveThreshold || Mathf.Sign(horizontalMove) == moveDir)
                         {
-                            float moveDir = Mathf.Sign(horizontalMove);
+                            horizontalMove += deltaX;
                             velocity = Mathf.SmoothDamp(velocity, moveDir * speed, ref velocity, smoothTime);
                             transform.position += Vector3.right * velocity * Time.deltaTime;
-                            horizontalMove = 0.0f;
                         }
                     }
                     break;
