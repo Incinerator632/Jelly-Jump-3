@@ -24,5 +24,11 @@ public class MoveProjectile : MonoBehaviour
         {
             gameManager.GameOver();
         }
+
+        if (collision.gameObject.CompareTag("Projectile")) // Check if the projectile hits an object with the "Obstacle" tag
+        {
+            Destroy(collision.gameObject); // Destroy the obstacle
+            Destroy(gameObject); // Destroy the projectile
+        }
     }
 }

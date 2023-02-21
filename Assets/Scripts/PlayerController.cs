@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     private float speed = 10f;
     private float horizontalInput;
-    private float xRange = 14;
+    private float xRange = 55; //14
 
     // Start is called before the first frame update
     void Start()

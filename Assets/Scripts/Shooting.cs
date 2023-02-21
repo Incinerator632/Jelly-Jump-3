@@ -29,16 +29,7 @@ public class Shooting : MonoBehaviour
 
     IEnumerator DestroyBulletAfterTime(GameObject bullet)
     {
-        yield return new WaitForSeconds(2.0f); // Wait for 2 seconds
+        yield return new WaitForSeconds(1.0f); // Wait for 2 seconds
         Destroy(bullet); // Destroy the projectile
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        { // Check if the projectile hits an object with the "Obstacle" tag
-            Destroy(collision.gameObject); // Destroy the obstacle
-            Destroy(gameObject); // Destroy the projectile
-        }
     }
 }
